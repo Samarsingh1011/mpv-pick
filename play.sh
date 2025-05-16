@@ -6,5 +6,8 @@ declare -A music
 input=$(for i in "${!music[@]}"; do echo "$i"; done | fzf)
 
 echo $input
-
-mpv --no-video "${music[$input]}"
+if [ -z "$input"]; then
+    exit
+else
+    mpv --no-video "${music[$input]}"
+fi
